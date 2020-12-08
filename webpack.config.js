@@ -1,11 +1,23 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-let resolve = dir => path.join(__dirname, '..', 'src', dir)
+let resolve = (dir) => path.join(__dirname, 'src', dir);
 module.exports = {
-  entry: './src/index.js',
+  // entry: './src/index.js',
+  // output: {
+  //   filename: 'main.js',
+  //   path: path.resolve(__dirname, 'dist'),
+  // },
+
+  entry: {
+    page1: resolve('./page1'),
+    page2: resolve('./page2'),
+  },
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.join(__dirname, 'build'),
+    publicPath: '/',
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[id].[name].js?[hash]',
+    library: '[name]',
   },
   optimization: {
     minimize: false,
@@ -13,9 +25,9 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src')
-    }
+      vue$: 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
+    },
   },
 
   module: {
@@ -53,28 +65,26 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: 'img/[name].[hash:7].[ext]'
-        }
+          name: 'img/[name].[hash:7].[ext]',
+        },
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: 'media/[name].[hash:7].[ext]'
-        }
+          name: 'media/[name].[hash:7].[ext]',
+        },
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: 'fonts/[name].[hash:7].[ext]'
-        }
-      }
+          name: 'fonts/[name].[hash:7].[ext]',
+        },
+      },
     ],
   },
-  plugins: [
-    new VueLoaderPlugin(),
-  ],
+  plugins: [new VueLoaderPlugin()],
 };
