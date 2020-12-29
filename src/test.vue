@@ -1,20 +1,19 @@
 <template>
-  <div class="hahaha">123</div>
+  <div class="example">{{ msg }}</div>
 </template>
+
 <script>
 export default {
-  data: () => ({}),
-  computed: {},
-  created() {},
-  mounted() {},
-  methods: {},
-};
-</script>
-<style>
-div {
-  color: blue;
+  data () {
+    return {
+      msg: 'Hello world!'
+    }
+  }
 }
-.hahaha {
-  background: red
+</script>
+
+<style>
+.example {
+  color: red;
 }
 </style>
