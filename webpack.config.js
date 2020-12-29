@@ -2,23 +2,23 @@ const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 let resolve = (dir) => path.join(__dirname, 'src', dir);
 module.exports = {
-  // entry: './src/index.js',
-  // output: {
-  //   filename: 'main.js',
-  //   path: path.resolve(__dirname, 'dist'),
-  // },
-
-  entry: {
-    page1: resolve('./page1'),
-    page2: resolve('./page2'),
-  },
+  entry: './src/index.js',
   output: {
-    path: path.join(__dirname, 'build'),
-    publicPath: '/',
-    filename: 'js/[name].js',
-    chunkFilename: 'js/[id].[name].js?[hash]',
-    library: '[name]',
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
   },
+
+  // entry: {
+  //   page1: resolve('./page1'),
+  //   page2: resolve('./page2'),
+  // },
+  // output: {
+  //   path: path.join(__dirname, 'build'),
+  //   publicPath: '/',
+  //   filename: 'js/[name].js',
+  //   chunkFilename: 'js/[id].[name].js?[hash]',
+  //   library: '[name]',
+  // },
   optimization: {
     minimize: false,
   },
